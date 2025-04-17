@@ -167,6 +167,7 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Contact Number</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -177,6 +178,14 @@
                                 <td>{{ info.LastName }}</td>
                                 <td>{{ info.Email }}</td>
                                 <td>{{ info.ContactNumber }}</td>
+                                <td class="action-btns">
+                                    <a href="{% url 'edit' info.id %}" class="btn btn-success btn-action">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="{% url 'delete' info.id %}" class="btn btn-danger btn-action">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </td>
                             </tr>
                             {% endfor %}
                         {% else %}
@@ -186,6 +195,7 @@
                                     <h4>No contacts found</h4>
                                     <p class="text-muted">Try a different search term</p>
                                 </td>
+                                
                             </tr>
                         {% endif %}
                     </tbody>
