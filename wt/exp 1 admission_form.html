@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admission Form</title>
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <!-- Heading -->
+        <h1 class="text-center mb-4">College Admission Form</h1>
+        
+        <!-- Admission Form -->
+        <form>
+            <!-- Full Name -->
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="form-group">
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" class="form-control" placeholder="Enter your contact number" required>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" class="form-control" rows="3" placeholder="Enter your address" required></textarea>
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+                <label>Gender:</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="gender" id="male" class="form-check-input" value="Male" required>
+                    <label for="male" class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="gender" id="female" class="form-check-input" value="Female" required>
+                    <label for="female" class="form-check-label">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="gender" id="other" class="form-check-input" value="Other">
+                    <label for="other" class="form-check-label">Other</label>
+                </div>
+            </div>
+
+            <!-- Course Preference -->
+            <div class="form-group">
+                <label for="course">Preferred Course:</label>
+                <select id="course" class="form-control" required>
+                    <option value="">Select a course</option>
+                    <option value="btech">B.Tech</option>
+                    <option value="mtech">M.Tech</option>
+                    <option value="mba">MBA</option>
+                    <option value="bca">BCA</option>
+                    <option value="bsc">B.Sc</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-block">Submit Application</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

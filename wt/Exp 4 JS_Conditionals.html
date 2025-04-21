@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Experiment 4 - JavaScript Conditionals, Loops, Sets, Maps</title>
+</head>
+<body>
+  <h2>Check the output in the browser console (Right-click > Inspect > Console)</h2>
+  <script>
+    // 1. Conditional Statements
+
+    // If-Else Statement
+    let num = -10;
+    if (num >= 0) {
+      console.log("The number is positive.");
+    } else {
+      console.log("The number is negative.");
+    }
+
+    // Else-If Statement
+    let score = 75;
+    if (score >= 90) {
+      console.log("Grade: A");
+    } else if (score >= 75) {
+      console.log("Grade: B");
+    } else {
+      console.log("Grade: C");
+    }
+
+    // Switch Statement
+    let day = "Tuesday";
+    switch (day) {
+      case "Monday":
+        console.log("Start of the week.");
+        break;
+      case "Tuesday":
+        console.log("Second day of the week.");
+        break;
+      default:
+        console.log("Another day.");
+        break;
+    }
+
+    // 2. Loops
+
+    // For Loop
+    console.log("For loop:");
+    for (let i = 1; i <= 10; i++) {
+      console.log(i);
+    }
+
+    // While Loop
+    console.log("While loop:");
+    let i = 1;
+    while (i <= 10) {
+      console.log(i);
+      i++;
+    }
+
+    // Do-While Loop
+    console.log("Do-While loop:");
+    let j = 1;
+    do {
+      console.log(j);
+      j++;
+    } while (j <= 10);
+
+    // Break Statement
+    console.log("Break example:");
+    for (let k = 0; k < 10; k++) {
+      if (k === 5) break;
+      console.log(k);
+    }
+
+    // 3. Sets in JavaScript
+    let mySet = new Set();
+    mySet.add(1);
+    mySet.add(2);
+    mySet.add(3);
+    console.log("Set contents:", mySet);
+
+    // 4. Maps in JavaScript
+    let myMap = new Map();
+    myMap.set("name", "John");
+    myMap.set("age", 30);
+    console.log("Map contents:", myMap);
+
+    // 5. typeof Operator
+    console.log(typeof 10);         // number
+    console.log(typeof "Hello");    // string
+    console.log(typeof true);       // boolean
+    console.log(typeof null);       // object (known bug)
+
+    // 6. Type Conversion
+    let convertedNum = Number("123");
+    console.log("Converted to number:", convertedNum);  // 123
+
+    let convertedStr = String(456);
+    console.log("Converted to string:", convertedStr);  // "456"
+
+    let convertedBool = Boolean(0);
+    console.log("Converted to boolean:", convertedBool); // false
+  </script>
+</body>
+</html>

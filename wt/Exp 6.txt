@@ -1,0 +1,128 @@
+1. Comment System
+
+<?php
+// Database connection
+$conn = mysqli_connect("localhost", "root", "", "your_database");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $comment = $_POST['comment'];
+    // Save comment to database
+    $sql = "INSERT INTO comments (comment) VALUES ('$comment')";
+    mysqli_query($conn, $sql);
+}
+
+// Display comments
+$result = mysqli_query($conn, "SELECT comment FROM comments");
+while ($row = mysqli_fetch_assoc($result)) {
+    echo $row['comment'] . "<br>";
+}
+?>
+
+<form method="POST">
+    <textarea name="comment" placeholder="Enter your comment"></textarea><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+2. Rating System
+
+<?php
+// Database connection
+$conn = mysqli_connect("localhost", "root", "", "mydb");
+
+if (isset($_POST['rate'])) {
+    $rating = $_POST['rating'];
+    $item_id = $_POST['item_id'];
+    // Save rating to database
+    $sql = "INSERT INTO ratings (item_id, rating) VALUES ('$item_id', '$rating')";
+    mysqli_query($conn, $sql);
+}
+
+// Display average rating
+$item_id = 1;  // Example item ID
+$result = mysqli_query($conn, "SELECT AVG(rating) AS average FROM ratings WHERE item_id = '$item_id'");
+$row = mysqli_fetch_assoc($result);
+echo "Average Rating: " . round($row['average'], 1);
+?>
+
+<form method="POST">
+    <input type="number" name="rating" min="1" max="5" placeholder="Rate 1-5" required><br>
+    <input type="hidden" name="item_id" value="1">
+    <input type="submit" name="rate" value="Submit Rating">
+</form>
+
+
+
+3. CV Builder System
+
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $experience = $_POST['experience'];
+    // Generate and save CV
+    $cv_content = "Name: $name\nEmail: $email\nExperience: $experience";
+    file_put_contents("cv_$name.txt", $cv_content);
+    echo "CV generated successfully!";
+}
+?>
+
+<form method="POST">
+    <input type="text" name="name" placeholder="Name" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <textarea name="experience" placeholder="Experience" required></textarea><br>
+    <input type="submit" value="Generate CV">
+</form>
+
+
+
+
+4. QR Code Generator
+
+<?php
+if (isset($_POST['generate_qr'])) {
+    $url = $_POST['url'];
+    include 'qrlib.php';  // Include the QR Code library
+    QRcode::png($url, 'qrcode.png');  // Generate QR Code
+    echo '<img src="qrcode.png" />';   // Display the generated QR Code
+}
+?>
+
+<form method="POST">
+    <input type="text" name="url" placeholder="Enter URL to generate QR" required><br>
+    <input type="submit" name="generate_qr" value="Generate QR Code">
+</form>
+
+
+
+5. Like/Dislike System
+
+
+<?php
+// Database connection
+$conn = mysqli_connect("localhost", "root", "", "your_database");
+
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+    $item_id = $_POST['item_id'];
+    if ($action == 'like') {
+        $sql = "UPDATE items SET likes = likes + 1 WHERE id = '$item_id'";
+    } elseif ($action == 'dislike') {
+        $sql = "UPDATE items SET dislikes = dislikes + 1 WHERE id = '$item_id'";
+    }
+    mysqli_query($conn, $sql);
+}
+
+// Display like/dislike counts
+$result = mysqli_query($conn, "SELECT likes, dislikes FROM items WHERE id = '$item_id'");
+$row = mysqli_fetch_assoc($result);
+echo "Likes: " . $row['likes'] . " Dislikes: " . $row['dislikes'];
+?>
+
+<form method="POST">
+    <input type="hidden" name="item_id" value="1">
+    <input type="submit" name="action" value="like">
+    <input type="submit" name="action" value="dislike">
+</form>

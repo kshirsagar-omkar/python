@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar Web App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: lightblue;
+      padding: 20px;
+    }
+    label, select, button {
+      margin: 10px;
+      font-size: 16px;
+    }
+    #calendar table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    #calendar th, #calendar td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+    }
+    #calendar th {
+      background-color: #f2f2f2;
+    }
+    .hover-info {
+      display: none;
+      color: green;
+      font-style: italic;
+    }
+    select:hover + .hover-info {
+      display: inline;
+    }
+  </style>
+</head>
+<body onload="changeBgColor();">
+  <h2>Dynamic Calendar Web Application</h2>
+  <form onsubmit="return validateForm()">
+    <label for="month">Month:</label>
+    <select id="month"></select>
+    <span class="hover-info">Select a month</span>
+
+    <label for="year">Year:</label>
+    <select id="year"></select>
+    <span class="hover-info">Select a year</span>
+
+    <button type="button" id="changeBgBtn">Change Background Color</button>
+  </form>
+
+  <div id="calendar"></div>
+
+  <script>
+    const monthSelect = document.getElementById('month');
+    const yearSelect = document.getElementById('year');
+
+    // Populate month dropdown
+    for (let i = 1; i <= 12; i++) {
+      let option = document.createElement('option');
+      option.value = i;
+      option.text = new Date(0, i - 1).toLocaleString('default', { month: 'long' });
+      monthSelect.appendChild(option);
+    }
+
+    // Populate year dropdown
+    const currentYear = new Date().getFullYear();
+    for (let i = currentYear; i <= currentYear + 10; i++) {
+      let option = document.createElement('option');
+      option.value = i;
+      option.text = i;
+      yearSelect.appendChild(option);
+    }
+
+    function generateCalendar() {
+      const month = parseInt(monthSelect.value);
+      const year = parseInt(yearSelect.value);
+      const calendarDiv = document.getElementById('calendar');
+      const firstDay = new Date(year, month - 1, 1).getDay();
+      const daysInMonth = new Date(year, month, 0).getDate();
+
+      let calendarHTML = '<table><thead><tr>';
+      const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      for (let d of days) calendarHTML += `<th>${d}</th>`;
+      calendarHTML += '</tr></thead><tbody>';
+
+      let dayCounter = 1;
+      for (let week = 0; week < 6; week++) {
+        calendarHTML += '<tr>';
+        for (let day = 0; day < 7; day++) {
+          if (week === 0 && day < firstDay) {
+            calendarHTML += '<td></td>';
+          } else if (dayCounter > daysInMonth) {
+            calendarHTML += '<td></td>';
+          } else {
+            calendarHTML += `<td>${dayCounter}</td>`;
+            dayCounter++;
+          }
+        }
+        calendarHTML += '</tr>';
+      }
+
+      calendarHTML += '</tbody></table>';
+      calendarDiv.innerHTML = calendarHTML;
+    }
+
+    // Background color change
+    document.getElementById('changeBgBtn').addEventListener('click', changeBgColor);
+
+    function changeBgColor() {
+      const colors = ['lightblue', 'lightgreen', 'lightcoral', 'lightyellow', 'lightpink', 'lightgray'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.style.backgroundColor = randomColor;
+    }
+
+    function validateForm() {
+      if (!monthSelect.value || !yearSelect.value) {
+        alert("Please select both month and year.");
+        return false;
+      }
+      return true;
+    }
+
+    // Event listeners for dropdowns
+    monthSelect.addEventListener('change', generateCalendar);
+    yearSelect.addEventListener('change', generateCalendar);
+
+    // Initialize dropdowns to current month and year
+    monthSelect.value = new Date().getMonth() + 1;
+    yearSelect.value = currentYear;
+    generateCalendar();
+  </script>
+</body>
+</html>

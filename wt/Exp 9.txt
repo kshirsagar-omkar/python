@@ -1,0 +1,48 @@
+Xml Life (book.xml)
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book SYSTEM "book.dtd">
+<book xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="book.xsd">
+    <title>XML Development</title>
+    <author>John Doe</author>
+    <isbn>978-123456789</isbn>
+    <publisher>TechBooks</publisher>
+    <edition>2nd</edition>
+    <price>29.99</price>
+</book>
+
+
+Dtd(book.dtd)
+
+<!ELEMENT book (title, author, isbn, publisher, edition, price)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT isbn (#PCDATA)>
+<!ELEMENT publisher (#PCDATA)>
+<!ELEMENT edition (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+
+
+XML (book.xsd)
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:element name="book">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="title" type="xsd:string"/>
+        <xsd:element name="author" type="xsd:string"/>
+        <xsd:element name="isbn" type="xsd:string"/>
+        <xsd:element name="publisher" type="xsd:string"/>
+        <xsd:element name="edition" type="xsd:string"/>
+        <xsd:element name="price" type="xsd:decimal"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>
+
+

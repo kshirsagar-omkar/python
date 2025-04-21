@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Variables, Data Types, Functions</title>
+</head>
+<body>
+  <h2>JavaScript Experiment 3 Demo</h2>
+  
+  <script>
+    // 1. VARIABLES (var, let, const)
+    var a = 10;
+    let b = 20;
+    const c = 30;
+    console.log("Var:", a, "Let:", b, "Const:", c);
+
+    // 2. DATA TYPES
+    // Primitive
+    let str = "Hello JS";
+    let num = 123;
+    let bigIntVal = 987654321987654321n;
+    let isTrue = true;
+    let temp;  // undefined
+    let nothing = null;
+    let sym = Symbol("unique");
+
+    console.log("String:", str);
+    console.log("Number:", num);
+    console.log("BigInt:", bigIntVal);
+    console.log("Boolean:", isTrue);
+    console.log("Undefined:", temp);
+    console.log("Null:", nothing);
+    console.log("Symbol:", sym.toString());
+
+    // Reference Types
+    let person = { name: "Aryan", age: 22 };
+    let fruits = ["Apple", "Mango", "Banana", "Cherry"];
+
+    console.log("Object:", person);
+    console.log("Array:", fruits);
+
+    // Array Operations
+    let index = fruits.indexOf("Mango");
+    let sorted = [...fruits].sort();
+    console.log("Index of Mango:", index);
+    console.log("Sorted Fruits:", sorted);
+
+    // 3. FUNCTIONS
+
+    // Temperature Conversion (Celsius → Fahrenheit)
+    function convertToFahrenheit(celsius) {
+      return (celsius * 9 / 5) + 32;
+    }
+    let celsius = 30;
+    console.log(`${celsius}°C = ${convertToFahrenheit(celsius)}°F`);
+
+    // Fibonacci Series using Recursion
+    function fibonacci(n) {
+      if (n <= 1) return n;
+      return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+    let n = 5;
+    let fibSeries = [];
+    for (let i = 0; i < n; i++) {
+      fibSeries.push(fibonacci(i));
+    }
+    console.log(`Fibonacci Series for n=${n}:`, fibSeries);
+  </script>
+</body>
+</html>
